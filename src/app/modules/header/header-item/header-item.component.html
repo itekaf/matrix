@@ -1,0 +1,10 @@
+<div *ngIf="isMenuOpen">
+  <button type="button" mat-button (click)="toggleMenu($event)">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>
+<div *ngIf="!isMenuOpen">
+  <button type="button" mat-button (click)="toggleMenu($event)">
+    <mat-icon>menu</mat-icon>
+  </button>
+</div>

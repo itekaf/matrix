@@ -1,0 +1,13 @@
+<app-header-item
+  [isMenuOpen]="isMenuOpen"
+  (onChangeStatus)="drawer.toggle()"
+></app-header-item>
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <app-menu-list></app-menu-list>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>
