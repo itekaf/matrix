@@ -1,0 +1,24 @@
+{
+  "PAGES": {
+    "HOME": {
+      "TITLE": "Title",
+      "GO_TO_DETAIL": "Open Detail Page"
+    },
+    "SETTINGS": {
+      "LANGUAGES": "Languages",
+      "ENGLISH": "English",
+      "RUSSIAN": "Russian",
+      "CHOOSE_LANGUAGES_HERE": "Choose languages here",
+      "IMPORT_DATA_FROM_SITE": "Import Data From Site",
+      "EXPORT_DATA_TO_1C": "Экспорт данных для 1С"
+    },
+    "PAGE_NOT_FOUND": {
+      "GO_TO_HOME": "Go to the main page"
+    }
+  },
+  "MENU": {
+    "ITEMS": "Items",
+    "SETTINGS": "Settings",
+    "CUSTOMERS": "Customers"
+  }
+}

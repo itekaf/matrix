@@ -50,4 +50,21 @@ export class ItemModel implements IDatabaseModel {
 
   @JsonProperty("meta_description(ru-ru)", String)
   public metaDescription: string = undefined;
+
+  public stock: string = undefined;
+
+  public barcode: number = 0;
+
+  public count: number = 0;
+
+  public priceWithoutNDS: number = 0;
+  public ndsCount: number = 0;
+  public priceWithNDS: number = 0;
+  public priceView: string = undefined;
+  public priceRetailWithNDS: number = 0;
+  public priceView2: string = undefined;
+  public priceRetailWithNDSFull: number = 0;
+  public priceView3: string = undefined;
+  public units: string = undefined;
+  public country: string = undefined;
 }

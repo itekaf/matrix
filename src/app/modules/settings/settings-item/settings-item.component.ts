@@ -6,6 +6,9 @@ import { XlsxVsePoleznoService } from 'app/core/services/xlsx/xlsx-vse-polezno.s
 import { Component, OnInit } from '@angular/core';
 import { ItemModel } from 'app/core/models/item.model';
 import { ItemDBService } from 'app/core/services/lowdb/item.lowdb.service';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguagesLongEnum, LanguagesShortEnum } from 'app/core/enum/languagesShortEnum';
 
 @Component({
   selector: 'app-settings-item',
@@ -13,6 +16,17 @@ import { ItemDBService } from 'app/core/services/lowdb/item.lowdb.service';
   styleUrls: ['./settings-item.component.scss']
 })
 export class SettingsItemComponent implements OnInit {
+  public settingsFromGroup: FormGroup;
+  public languagesOptions: Object[] = [
+    {
+      name: LanguagesLongEnum.English,
+      short: LanguagesShortEnum.en
+    },{
+      name: LanguagesLongEnum.Russian,
+      short: LanguagesShortEnum.ru
+    }
+  ];
+  public languagesControl: FormControl = new FormControl(LanguagesShortEnum.en);
 
   constructor(
     private electronService: ElectronService,
@@ -20,9 +34,20 @@ export class SettingsItemComponent implements OnInit {
     private xlsxVsePoleznoService: XlsxVsePoleznoService,
     private toastr: ToastrService,
     private itemDBService: ItemDBService,
-  ) { }
+    private fb: FormBuilder,
+    private translateService: TranslateService,
+  ) {
+
+  }
 
   ngOnInit() {
+    this.settingsFromGroup = new FormGroup({
+      languages: this.languagesControl,
+    });
+    this.languagesControl.valueChanges.subscribe((value) =>{
+      console.log(value);
+      this.translateService.use(value);
+    });
   }
 
   public importDataFromSite() {
@@ -52,5 +77,9 @@ export class SettingsItemComponent implements OnInit {
         this.itemDBService.set(value);
       })
     });
+  }
+
+  public exportDataTo1C() {
+
   }
 }
