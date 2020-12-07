@@ -12,9 +12,8 @@ export class XlsxService {
 
   }
 
-  public readFileFromData(data: Buffer) {
-    const workbook = xlsx.read(data);
-    console.log(workbook);
+  public readFileFromData(data) {
+
   }
 }
 

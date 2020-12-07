@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
 import { ElectronService } from 'app/core/services';
 import { XlsxService } from 'app/core/services/xlsx/xlsx.service';
 import { ToastrService } from 'ngx-toastr';
+
+import { XlsxVsePoleznoService } from 'app/core/services/xlsx/xlsx-vse-polezno.service';
+import { Component, OnInit } from '@angular/core';
+import { ItemModel } from 'app/core/models/item.model';
+import { ItemDBService } from 'app/core/services/lowdb/item.lowdb.service';
 
 @Component({
   selector: 'app-settings-item',
@@ -13,14 +17,15 @@ export class SettingsItemComponent implements OnInit {
   constructor(
     private electronService: ElectronService,
     private xlsxService: XlsxService,
-    private toastr: ToastrService
+    private xlsxVsePoleznoService: XlsxVsePoleznoService,
+    private toastr: ToastrService,
+    private itemDBService: ItemDBService,
   ) { }
 
   ngOnInit() {
   }
 
   public importDataFromSite() {
-
     this.electronService.remote.dialog.showOpenDialog({
       properties: ['openFile'],
       filters: [
@@ -40,9 +45,12 @@ export class SettingsItemComponent implements OnInit {
   }
 
   readFile(filePath: string): void {
-    const fileData = this.electronService.fs.readFile(filePath, (error, file: Buffer) => {
-      this.xlsxService.readFileFromData(file);
+    const fileData = this.electronService.fs.readFile(filePath, (error, file) => {
+      this.itemDBService.resetMain();
+      const items: ItemModel[] = this.xlsxVsePoleznoService.readFileFromData(file);
+      items.forEach((value) => {
+        this.itemDBService.set(value);
+      })
     });
-
   }
 }

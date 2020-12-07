@@ -1,6 +1,9 @@
 import * as xlsx from 'xlsx';
-import { Injectable } from '@angular/core';
 import { XlsxService } from './xlsx.service';
+
+import { ItemModel } from './../../models/item.model';
+import { Injectable } from '@angular/core';
+import { JsonConvert } from 'json2typescript';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +20,16 @@ export class XlsxVsePoleznoService {
 
   }
 
-  public readFileFromData(data: Buffer) {
+  public readFileFromData(data): ItemModel[] {
     const workbook = xlsx.read(data);
-    console.log(workbook);
+    const worksheet = workbook.Sheets[this.mainSheet];
+    const json = xlsx.utils.sheet_to_json(worksheet);
+    let answer: ItemModel[] = [];
+    json.forEach((value, index) => {
+        const jsonConvert: JsonConvert = new JsonConvert();
+        const user: ItemModel = jsonConvert.deserializeObject(value, ItemModel);
+        answer.push(user);
+    });
+    return answer;
   }
 }
