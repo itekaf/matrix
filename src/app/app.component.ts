@@ -5,6 +5,7 @@ import { AppConfig } from '../environments/environment';
 import { ItemDBService } from 'app/core/services/lowdb/item.lowdb.service';
 import { CustomerDBService } from 'app/core/services/lowdb/customer.lowdb.service';
 import { LanguagesShortEnum } from 'app/core/enum/languagesShortEnum';
+import { IAppSettings, SettingsDBService } from 'app/core/services/lowdb/settings.lowdb.service';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ export class AppComponent implements OnInit {
     private dbItems: ItemDBService,
     private dbCustomers: CustomerDBService,
     private translateService: TranslateService,
+    private dbSettings: SettingsDBService,
   ) {
 
     console.log('AppConfig', AppConfig);
@@ -39,12 +41,15 @@ export class AppComponent implements OnInit {
 
   private initDatabase() {
     this.dbItems.connect();
+    this.dbSettings.connect();
     this.dbCustomers.connect();
   }
 
   private initTranslate(): void {
     this.translateService.setDefaultLang(LanguagesShortEnum.en);
     this.translateService.addLangs([LanguagesShortEnum.en, LanguagesShortEnum.ru]);
-    this.translateService.use(LanguagesShortEnum.en);
+
+    const defaultSettings: IAppSettings = this.dbSettings.getSettings();
+    this.translateService.use(defaultSettings.language);
   }
 }

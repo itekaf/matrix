@@ -5,15 +5,32 @@
           "GO_TO_DETAIL": "Open Detail Page"
       },
       "SETTINGS": {
-        "LANGUAGES": "Languages",
-        "ENGLISH": "English",
-        "RUSSIAN": "Russian",
-        "CHOOSE_LANGUAGES_HERE": "Choose languages here",
-        "IMPORT_DATA_FROM_SITE": "Import Data From Site",
-        "EXPORT_DATA_TO_1C": "Export Data to 1C"
+          "LANGUAGES": "Languages",
+          "CHOOSE_LANGUAGES_HERE": "Choose languages here",
+          "IMPORT_DATA_FROM_SITE": "Import Data From Site",
+          "EXPORT_DATA_TO_1C": "Export Data to 1C"
       },
-      "PAGE_NOT_FOUND": {
-        "GO_TO_HOME": "Go to the main page"
+      "ITEMS": {
+          "FILTER": "Search",
+          "SEARCH_ITEM": "Search item",
+          "STOCK": "Stock",
+          "CATEGORIES": "Categories",
+          "BARCODE": "Barcode",
+          "SKU": "Sku",
+          "NAME": "Name",
+          "COUNT": "Count",
+          "PRICE_WITHOUT_NDS": "Price without NDS",
+          "NDS_COUNT": "NDS Count",
+          "PRICE_WITH_NDS": "Price with NDS",
+          "PRICE_VIEW": "Price view",
+          "PRICE_RETAIL_WITH_NDS": "Price retail with NDS",
+          "PRICE_VIEW_2": "Price view 2",
+          "PRICE_RETAIL_WITH_NDS_FULL": "Price retail with NDS full",
+          "PRICE_VIEW_3": "Price view 3",
+          "UNITS": "Units",
+          "COUNTRY": "Country",
+          "CUSTOMER": "Customer",
+          "ARTICLE": "Article"
       }
   },
   "MENU": {

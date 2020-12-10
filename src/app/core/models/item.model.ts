@@ -3,60 +3,61 @@ import { IDatabaseModel } from 'app/core/interfaces/database.iterface';
 
 @JsonObject("ItemModel")
 export class ItemModel implements IDatabaseModel {
-  @JsonProperty("product_id", Number)
+  @JsonProperty("product_id", Number, true)
   public id: number = 0;
 
-  @JsonProperty("name(ru-ru)", String)
+  @JsonProperty("name(ru-ru)", String, true)
   public name: string = undefined;
 
-  @JsonProperty("categories", String)
+  @JsonProperty("categories", String, true)
   public categories: string  = undefined;
 
   @JsonProperty("sku", String, true)
-  public sku: string = '';
+  public sku: string = undefined;
 
-  @JsonProperty("model", String)
-  public model: string  = undefined;
+  @JsonProperty("model", String, true)
+  public article: string  = undefined;
 
-  @JsonProperty("manufacturer", String)
-  public customer: string  = undefined;
-
-  @JsonProperty("price", Number)
+  @JsonProperty("price", Number, true)
   public price: number = 0;
 
-  @JsonProperty("weight", Number)
+  @JsonProperty("weight", Number, true)
   public weight: number = 0;
 
-  @JsonProperty("weight_unit", String)
+  @JsonProperty("weight_unit", String, true)
   public weightUnit: string = undefined;
 
-  @JsonProperty("length", Number)
+  @JsonProperty("length", Number, true)
   public length: number = 0;
 
-  @JsonProperty("width", Number)
+  @JsonProperty("width", Number, true)
   public width: number = 0;
 
-  @JsonProperty("height", Number)
+  @JsonProperty("height", Number, true)
   public height: number = 0;
 
-  @JsonProperty("length_unit", String)
+  @JsonProperty("length_unit", String, true)
   public lengthUnit: string = undefined;
 
-  @JsonProperty("description(ru-ru)", String)
+  @JsonProperty("description(ru-ru)", String, true)
   public description: string = undefined;
 
-  @JsonProperty("meta_title(ru-ru)", String)
+  @JsonProperty("meta_title(ru-ru)", String, true)
   public metaTitle: string = undefined;
 
-  @JsonProperty("meta_description(ru-ru)", String)
+  @JsonProperty("meta_description(ru-ru)", String, true)
   public metaDescription: string = undefined;
 
-  public stock: string = undefined;
+  @JsonProperty("manufacturer", String, true)
+  public customer: string = undefined;
 
-  public barcode: number = 0;
+  @JsonProperty("ean", String, true)
+  public barcode: string = undefined;
 
+  @JsonProperty("quantity", Number, true)
   public count: number = 0;
 
+  public stock: string = undefined;
   public priceWithoutNDS: number = 0;
   public ndsCount: number = 0;
   public priceWithNDS: number = 0;
@@ -67,4 +68,5 @@ export class ItemModel implements IDatabaseModel {
   public priceView3: string = undefined;
   public units: string = undefined;
   public country: string = undefined;
+  public brand: string = undefined;
 }

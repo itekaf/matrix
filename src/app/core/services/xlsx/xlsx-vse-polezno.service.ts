@@ -4,6 +4,7 @@ import { XlsxService } from './xlsx.service';
 import { ItemModel } from './../../models/item.model';
 import { Injectable } from '@angular/core';
 import { JsonConvert } from 'json2typescript';
+import { Item1CModel } from 'app/core/models/item-1c.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,17 @@ export class XlsxVsePoleznoService {
     private xlsxService: XlsxService,
   ) {}
 
-  public exportData() {
-
+  public convertData(data: ItemModel[]): Object[] {
+    let result = [];
+    data.forEach((value: ItemModel, index) => {
+        const ops = new Item1CModel();
+        ops.units = value.units;
+        ops.name = value.name;
+        const jsonConvert: JsonConvert = new JsonConvert();
+        const correctObject = jsonConvert.serializeObject<Item1CModel>(value, Item1CModel);
+        result.push(correctObject);
+    });
+    return result;
   }
 
   public readFileFromData(data): ItemModel[] {
@@ -28,6 +38,7 @@ export class XlsxVsePoleznoService {
     json.forEach((value, index) => {
         const jsonConvert: JsonConvert = new JsonConvert();
         const user: ItemModel = jsonConvert.deserializeObject(value, ItemModel);
+
         answer.push(user);
     });
     return answer;

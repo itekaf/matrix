@@ -1,0 +1,7 @@
+<mat-grid-list cols="4" rowHeight="4:1">
+  <mat-grid-tile *ngFor="let customer of customersList">
+    <div routerLink="{{ customer.route}}">
+      <img src="{{ customer.logo}}" />
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

@@ -21,6 +21,10 @@ const routes: Routes = [
     loadChildren: () => import('./modules/settings/settings.module').then((m) => m.SettingsModule),
   },
   {
+    path: 'customers',
+    loadChildren: () => import('./modules/customer/customer.module').then((m) => m.CustomerModule),
+  },
+  {
     path: '**',
     component: PageNotFoundComponent
   }

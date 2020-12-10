@@ -1,9 +1,10 @@
-
+<app-loading-data [isShow]="isLoading"></app-loading-data>
 <form class="example-container" [formGroup]="settingsFromGroup" >
   <mat-form-field appearance="fill">
     <mat-label>{{ 'PAGES.SETTINGS.LANGUAGES' | translate }}</mat-label>
     <mat-select  [formControl]="languagesControl">
-      <mat-option *ngFor="let languagesOption of languagesOptions" [value]="languagesOption.short">
+      <mat-option *ngFor="let languagesOption of languagesOptions"
+                  [value]="languagesOption.short">
         {{languagesOption.name}}
       </mat-option>
     </mat-select>
@@ -17,5 +18,5 @@
 <button mat-raised-button (click)="exportDataTo1C()">
   {{ 'PAGES.SETTINGS.EXPORT_DATA_TO_1C' | translate }}
 </button>
-<!--<app-loading-data [isShow]="isLoading" [fill]="true"></app-loading-data>-->
+
 

@@ -7,9 +7,12 @@ export interface IDatabaseConnect {
   defaultObject: any;
   init();
   connect();
-  get()
-  set(item: IDatabaseModel, prop)
-  remove(id: number)
+  getMain()
+  setMain(item: IDatabaseModel, prop)
+  removeMain(id: number)
+  getSettings()
+  setSettings(item: Object, prop)
+  removeSettings(id: number)
 }
 
 export interface ITableSettings {}

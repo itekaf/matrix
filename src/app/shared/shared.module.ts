@@ -22,6 +22,8 @@ import { MatCardModule } from '@angular/material/card';
 import { LoadingDataComponent } from './components/loading-data/loading-data.component';
 import { BaseComponentComponent } from './components/base-component/base-component.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSortModule } from '@angular/material/sort';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 const sharedModules = [
   MatListModule,
@@ -40,6 +42,8 @@ const sharedModules = [
   ReactiveFormsModule,
   MatCardModule,
   MatProgressBarModule,
+  MatSortModule,
+  MatGridListModule,
 ];
 
 @NgModule({

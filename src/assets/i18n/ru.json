@@ -1,24 +1,41 @@
 {
   "PAGES": {
     "HOME": {
-      "TITLE": "Title",
-      "GO_TO_DETAIL": "Open Detail Page"
+        "TITLE": "Title",
+        "GO_TO_DETAIL": "Open Detail Page"
     },
     "SETTINGS": {
-      "LANGUAGES": "Languages",
-      "ENGLISH": "English",
-      "RUSSIAN": "Russian",
-      "CHOOSE_LANGUAGES_HERE": "Choose languages here",
-      "IMPORT_DATA_FROM_SITE": "Import Data From Site",
-      "EXPORT_DATA_TO_1C": "Экспорт данных для 1С"
+        "LANGUAGES": "Языки",
+        "CHOOSE_LANGUAGES_HERE": "Выберите язык",
+        "IMPORT_DATA_FROM_SITE": "Импортировать данные из сайта Vse Polezno",
+        "EXPORT_DATA_TO_1C": "Экспорт данных для 1С"
     },
-    "PAGE_NOT_FOUND": {
-      "GO_TO_HOME": "Go to the main page"
+    "ITEMS": {
+        "FILTER": "Поиск",
+        "SEARCH_ITEM": "Поиск товара",
+        "STOCK": "Склад",
+        "CATEGORIES": "Категории",
+        "BARCODE": "Штрихкод",
+        "SKU": "SKU",
+        "NAME": "Наименование",
+        "COUNT": "Количество",
+        "PRICE_WITHOUT_NDS": "Цена без НДС",
+        "NDS_COUNT": "Ставка НДС",
+        "PRICE_WITH_NDS": "Учетная цена с НДС",
+        "PRICE_VIEW": "Вид цены",
+        "PRICE_RETAIL_WITH_NDS": "Розничная цена 2 с НДС",
+        "PRICE_VIEW_2": "Вид цены 2",
+        "PRICE_RETAIL_WITH_NDS_FULL": "Розничная фул-прайс с НДС",
+        "PRICE_VIEW_3": "Вид цены",
+        "UNITS": "Ед.",
+        "COUNTRY": "Страна",
+        "CUSTOMER": "Поставщик",
+       "ARTICLE": "Article"
     }
   },
   "MENU": {
-    "ITEMS": "Items",
-    "SETTINGS": "Settings",
-    "CUSTOMERS": "Customers"
+    "ITEMS": "Товары",
+    "SETTINGS": "Настройка",
+    "CUSTOMERS": "Продавцы"
   }
 }

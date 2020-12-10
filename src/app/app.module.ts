@@ -25,6 +25,7 @@ import { MenuModule } from 'app/modules/menu/menu.module';
 import { ItemModule } from 'app/modules/item/item.module';
 import { SettingsModule } from 'app/modules/settings/settings.module';
 import { ToastrModule } from 'ngx-toastr';
+import { CustomerModule } from 'app/modules/customer/customer.module';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -45,6 +46,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     HttpClientModule,
     CoreModule,
     SharedModule,
+    CustomerModule,
     HomeModule,
     AppRoutingModule,
     ToastrModule.forRoot(),

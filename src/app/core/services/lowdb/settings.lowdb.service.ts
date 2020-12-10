@@ -1,20 +1,26 @@
 import { Injectable } from '@angular/core';
 import { LowdbService } from './lowdb.service';
 import { IDatabaseConnect, IDatabaseModel, ITableDatabase } from '../../interfaces/database.iterface';
-import { CustomerModel } from '../../models/customer.model';
-import { ItemModel } from 'app/core/models/item.model';
+import { ItemModel } from '../../models/item.model';
+import { LanguagesShortEnum } from 'app/core/enum/languagesShortEnum';
+
+export interface IAppSettings {
+  language: LanguagesShortEnum,
+}
 
 const defaultObject: ITableDatabase = {
   main: [],
-  settings: {}
+  settings: {
+    language: LanguagesShortEnum.ru,
+  }
 };
 
 @Injectable({
   providedIn: 'root'
 })
-export class CustomerDBService implements IDatabaseConnect {
+export class SettingsDBService implements IDatabaseConnect {
   database: any;
-  databaseName: string = 'customer';
+  databaseName: string = 'settings';
   defaultObject: ITableDatabase = defaultObject;
 
   constructor(
@@ -24,40 +30,32 @@ export class CustomerDBService implements IDatabaseConnect {
   init() {
     this.connect();
   }
+
   connect() {
-   return this.lowdbService.connect(this.databaseName, this.defaultObject);
+    return this.lowdbService.connect(this.databaseName, this.defaultObject);
   }
 
   getMain() {
     return this.connect().get('main').value();
   }
-  getSettings() {
+
+  getSettings<T>(): T {
+    return this.connect().get('settings').value() as T;
   }
 
   setMain(item: IDatabaseModel) {
     return this.connect().get('main').push(item).write();
   }
 
-  changeMainSingle(item: IDatabaseModel) {
-    const allOfMain: IDatabaseModel[] = this.getMain();
-    const correctMain = allOfMain.reduce((accum: IDatabaseModel[], value: IDatabaseModel) => {
-      if (value.id === item.id) {
-        accum.push(item);
-      } else  {
-        accum.push(value);
-      }
-      return accum;
-    }, []);
-    return this.connect().set('main', correctMain).write();
-  }
-
-  setSettings(item: Object, prop) {
+  setSettings(item: IAppSettings) {
     return this.connect().set('settings', item).write();
   }
 
   removeMain(id: number) {
     return this.connect().get('main').remove({ id }).write()
   }
+
   removeSettings(id: number) {
+    return this.connect().get('settings').remove({ id }).write()
   }
 }

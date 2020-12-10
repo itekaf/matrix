@@ -3,23 +3,117 @@
     <table class="example-full-width" cellspacing="0"><tr>
       <td>
         <mat-form-field appearance="fill">
-          <mat-label>Name</mat-label>
-          <input matInput>
+          <mat-label>{{ 'PAGES.ITEMS.STOCK' | translate }}</mat-label>
+          <input matInput [formControl]="stockControl">
         </mat-form-field>
       </td>
       <td>
         <mat-form-field appearance="fill">
-          <mat-label>Barcode</mat-label>
-          <input matInput>
+          <mat-label>{{ 'PAGES.ITEMS.CATEGORIES' | translate}}</mat-label>
+          <input matInput [formControl]="categoriesControl">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'PAGES.ITEMS.BARCODE' | translate}}</mat-label>
+          <input matInput [formControl]="barcodeControl">
+        </mat-form-field>
+      </td>
+    </tr>
+      <tr>
+      <td>
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'PAGES.ITEMS.ARTICLE' | translate}}</mat-label>
+          <input matInput [formControl]="articleControl">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'PAGES.ITEMS.NAME' | translate}}</mat-label>
+          <input matInput [formControl]="nameControl">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'PAGES.ITEMS.COUNT' | translate}}</mat-label>
+          <input matInput [formControl]="countControl">
+        </mat-form-field>
+      </td>
+      </tr>
+      <tr>
+      <td>
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'PAGES.ITEMS.PRICE_WITHOUT_NDS' | translate}}</mat-label>
+          <input matInput [formControl]="priceWithoutNDSControl">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'PAGES.ITEMS.NDS_COUNT' | translate}}</mat-label>
+          <input matInput [formControl]="ndsCountControl">
+        </mat-form-field>
+      </td>
+      <td>
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'PAGES.ITEMS.PRICE_WITH_NDS' | translate}}</mat-label>
+        <input matInput [formControl]="priceWithNDSControl">
+      </mat-form-field>
+      </td>
+     </tr>
+     <tr>
+      <td>
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'PAGES.ITEMS.PRICE_VIEW' | translate}}</mat-label>
+          <input matInput [formControl]="priceViewControl">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'PAGES.ITEMS.PRICE_RETAIL_WITH_NDS' | translate}}</mat-label>
+          <input matInput [formControl]="priceRetailWithNDSControl">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'PAGES.ITEMS.PRICE_VIEW_2' | translate}}</mat-label>
+          <input matInput [formControl]="priceView2Control">
+        </mat-form-field>
+      </td>
+     </tr>
+      <tr>
+      <td>
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'PAGES.ITEMS.PRICE_RETAIL_WITH_NDS_FULL' | translate}}</mat-label>
+          <input matInput [formControl]="priceRetailWithNDSFullControl">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'PAGES.ITEMS.PRICE_VIEW_3' | translate}}</mat-label>
+          <input matInput [formControl]="priceView3Control">
+        </mat-form-field>
+      </td>
+      </tr>
+      <tr>
+      <td>
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'PAGES.ITEMS.UNITS' | translate}}</mat-label>
+          <input matInput [formControl]="unitsControl">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'PAGES.ITEMS.CUSTOMER' | translate}}</mat-label>
+          <input matInput [formControl]="customerControl">
         </mat-form-field>
       </td>
     </tr>
       <tr>
         <td>
-          <button mat-raised-button color="primary">Save</button>
+          <button mat-raised-button color="primary" (click)="saveAction()">{{ 'PAGES.ITEMS.SAVE' | translate }}</button>
         </td>
         <td>
-          <button mat-raised-button color="accent">Cancel</button>
+          <button mat-raised-button color="accent" (cancel)="cancelAction()">{{ 'PAGES.ITEMS.CANCEL' | translate }}</button>
         </td>
       </tr>
     </table>

@@ -5,6 +5,21 @@ table {
   font-size: 14px;
   width: 100%;
 }
+.example-container {
+  height: auto;
+  width: 100%;
+  overflow: auto;
+}
+
+.mat-header-cell, .mat-footer-cell, .mat-cell {
+  min-width: 180px;
+  box-sizing: border-box;
+  padding: 0 10px;
+}
+
+.mat-header-cell-max-with {
+  min-width: 400px;
+}
 
 tr.example-detail-row {
   height: 0;
