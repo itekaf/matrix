@@ -2,16 +2,20 @@ import { Injectable } from '@angular/core';
 import { LowdbService } from './lowdb.service';
 import { IDatabaseConnect, IDatabaseModel, ITableDatabase } from '../../interfaces/database.iterface';
 import { ItemModel } from '../../models/item.model';
-import { LanguagesShortEnum } from 'app/core/enum/languagesShortEnum';
+import { LanguagesShortEnum } from 'app/core/enum/languagesShort.enum';
 
 export interface IAppSettings {
-  language: LanguagesShortEnum,
+    articlePrefix: string;
+    articleNumber: number
+    language: LanguagesShortEnum,
 }
 
 const defaultObject: ITableDatabase = {
   main: [],
   settings: {
-    language: LanguagesShortEnum.ru,
+      language: LanguagesShortEnum.ru,
+      articlePrefix: 'BA',
+      articleNumber: 100000,
   }
 };
 
@@ -31,6 +35,15 @@ export class SettingsDBService implements IDatabaseConnect {
     this.connect();
   }
 
+    updateLastArticle() {
+      const currentSettings: IAppSettings = this.getSettings();
+      const correctSettings: IAppSettings = {
+          language: currentSettings.language,
+          articlePrefix: currentSettings.articlePrefix,
+          articleNumber: currentSettings.articleNumber + 1,
+      };
+      return this.setSettings(correctSettings);
+    }
   connect() {
     return this.lowdbService.connect(this.databaseName, this.defaultObject);
   }
@@ -43,7 +56,7 @@ export class SettingsDBService implements IDatabaseConnect {
     return this.connect().get('settings').value() as T;
   }
 
-  setMain(item: IDatabaseModel) {
+  setMain(item: IDatabaseModel | IDatabaseModel[]) {
     return this.connect().get('main').push(item).write();
   }
 

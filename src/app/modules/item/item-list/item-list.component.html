@@ -1,140 +1,131 @@
 <mat-form-field>
-  <mat-label>{{ 'PAGES.ITEMS.FILTER' | translate }}</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="{{ 'PAGES.ITEMS.SEARCH_ITEM' | translate }}" #input>
+    <mat-label>{{ 'PAGES.ITEMS.FILTER' | translate }}</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="{{ 'PAGES.ITEMS.SEARCH_ITEM' | translate }}" #input>
 </mat-form-field>
 <div class="example-container mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource" multiTemplateDataRows matSort class="mat-elevation-z8" >
-    <!-- Product Column -->
-    <ng-container matColumnDef="stock">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'PAGES.ITEMS.STOCK' | translate }}</th>
-      <td mat-cell *matCellDef="let element"> {{element.stock}} </td>
-    </ng-container>
+    <table mat-table [dataSource]="dataSource" multiTemplateDataRows matSort class="mat-elevation-z8" >
+        <!-- Product Column -->
+        <ng-container matColumnDef="stock">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'PAGES.ITEMS.STOCK' | translate }}</th>
+            <td mat-cell *matCellDef="let element"> {{element.stock}} </td>
+        </ng-container>
 
-    <!-- Sku Column -->
-    <ng-container matColumnDef="categories">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'PAGES.ITEMS.CATEGORIES' | translate }} </th>
-      <td mat-cell *matCellDef="let element"> {{element.categories}} </td>
-    </ng-container>
+        <!-- Sku Column -->
+        <ng-container matColumnDef="categories">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'PAGES.ITEMS.CATEGORIES' | translate }} </th>
+            <td mat-cell *matCellDef="let element"> {{element.categories}} </td>
+        </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="barcode">
-      <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.BARCODE' | translate }} </th>
-      <td mat-cell *matCellDef="let element"> {{element.barcode}} </td>
-    </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="barcode">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.BARCODE' | translate }} </th>
+            <td mat-cell *matCellDef="let element"> {{element.barcode}} </td>
+        </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="article">
-      <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.ARTICLE' | translate }} </th>
-      <td mat-cell *matCellDef="let element"> {{element.article}} </td>
-    </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="article">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.ARTICLE' | translate }} </th>
+            <td mat-cell *matCellDef="let element"> {{element.article}} </td>
+        </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef class="mat-header-cell-max-with"  mat-sort-header>{{ 'PAGES.ITEMS.NAME' | translate }} </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef class="mat-header-cell-max-with"  mat-sort-header>{{ 'PAGES.ITEMS.NAME' | translate }} </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="count">
-      <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.COUNT' | translate }} </th>
-      <td mat-cell *matCellDef="let element"> {{element.count}} </td>
-    </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="count">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.COUNT' | translate }} </th>
+            <td mat-cell *matCellDef="let element"> {{element.count}} </td>
+        </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="priceWithoutNDS">
-      <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.PRICE_WITHOUT_NDS' | translate }} </th>
-      <td mat-cell *matCellDef="let element"> {{element.priceWithoutNDS}} </td>
-    </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="priceWithoutNDS">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.PRICE_WITHOUT_NDS' | translate }} </th>
+            <td mat-cell *matCellDef="let element"> {{element.priceWithoutNDS}} </td>
+        </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="ndsCount">
-      <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.NDS_COUNT' | translate }} </th>
-      <td mat-cell *matCellDef="let element"> {{element.ndsCount}} </td>
-    </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="ndsCount">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.NDS_COUNT' | translate }} </th>
+            <td mat-cell *matCellDef="let element"> {{element.ndsCount}} </td>
+        </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="priceWithNDS">
-      <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.PRICE_WITH_NDS' | translate }} </th>
-      <td mat-cell *matCellDef="let element"> {{element.priceWithNDS}} </td>
-    </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="priceWithNDS">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.PRICE_WITH_NDS' | translate }} </th>
+            <td mat-cell *matCellDef="let element"> {{element.priceWithNDS}} </td>
+        </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="priceView">
-      <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.PRICE_VIEW' | translate }} </th>
-      <td mat-cell *matCellDef="let element"> {{element.priceView}} </td>
-    </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="priceView">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.PRICE_VIEW' | translate }} </th>
+            <td mat-cell *matCellDef="let element"> {{element.priceView}} </td>
+        </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="priceRetailWithNDS">
-      <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.PRICE_RETAIL_WITH_NDS' | translate }} </th>
-      <td mat-cell *matCellDef="let element"> {{element.priceRetailWithNDS}} </td>
-    </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="priceRetailWithNDS">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.PRICE_RETAIL_WITH_NDS' | translate }} </th>
+            <td mat-cell *matCellDef="let element"> {{element.priceRetailWithNDS}} </td>
+        </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="priceView2">
-      <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.PRICE_VIEW_2' | translate }} </th>
-      <td mat-cell *matCellDef="let element"> {{element.priceView2}} </td>
-    </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="priceView2">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.PRICE_VIEW_2' | translate }} </th>
+            <td mat-cell *matCellDef="let element"> {{element.priceView2}} </td>
+        </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="priceRetailWithNDSFull">
-      <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.PRICE_RETAIL_WITH_NDS_FULL' | translate }} </th>
-      <td mat-cell *matCellDef="let element"> {{element.priceRetailWithNDSFull}} </td>
-    </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="priceRetailWithNDSFull">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.PRICE_RETAIL_WITH_NDS_FULL' | translate }} </th>
+            <td mat-cell *matCellDef="let element"> {{element.priceRetailWithNDSFull}} </td>
+        </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="priceView3">
-      <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.PRICE_VIEW_3' | translate }} </th>
-      <td mat-cell *matCellDef="let element"> {{element.priceView3}} </td>
-    </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="priceView3">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.PRICE_VIEW_3' | translate }} </th>
+            <td mat-cell *matCellDef="let element"> {{element.priceView3}} </td>
+        </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="units">
-      <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.UNITS' | translate }} </th>
-      <td mat-cell *matCellDef="let element"> {{element.units}} </td>
-    </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="units">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.UNITS' | translate }} </th>
+            <td mat-cell *matCellDef="let element"> {{element.units}} </td>
+        </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="customer">
-      <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.CUSTOMER' | translate }} </th>
-      <td mat-cell *matCellDef="let element"> {{element.customer}} </td>
-    </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="customer">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.CUSTOMER' | translate }} </th>
+            <td mat-cell *matCellDef="let element"> {{element.customer}} </td>
+        </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="country">
-      <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.COUNTRY' | translate }} </th>
-      <td mat-cell *matCellDef="let element"> {{element.country}} </td>
-    </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="country">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'PAGES.ITEMS.COUNTRY' | translate }} </th>
+            <td mat-cell *matCellDef="let element"> {{element.country}} </td>
+        </ng-container>
 
-    <ng-container matColumnDef="expandedDetail">
-      <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
-        <div class="example-element-detail"
-             [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-          <!--       <div class="example-element-diagram">
-                   <div class="example-element-name"> {{element.name}} </div>
-                 </div>
-                 <div class="example-element-description">
-                   {{element.description}}
-                   <span class="example-element-description-attribution"> &#45;&#45; Wikipedia </span>
-                 </div>-->
-          <app-item-card
-            [inputItem]="element"
-            (updateItem)="updateItemAction($event)"
-          ></app-item-card>
-        </div>
-      </td>
-    </ng-container>
+        <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+                <div class="example-element-detail"
+                     [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                    <app-item-card
+                        [inputItem]="element"
+                        (updateItemEmitter)="updateItemAction($event)"
+                    ></app-item-card>
+                </div>
+            </td>
+        </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <!--  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
-    <tr mat-row *matRowDef="let element; columns: displayedColumns;"
-        class="example-element-row"
-        [class.example-expanded-row]="expandedElement === element"
-        (click)="expandedElement = expandedElement === element ? null : element">
-    </tr>
-    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
-  </table>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let element; columns: displayedColumns;"
+            class="example-element-row"
+            [class.example-expanded-row]="expandedElement === element"
+            (click)="expandedElement = expandedElement === element ? null : element">
+        </tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </table>
 </div>
+<mat-paginator [pageSizeOptions]="[10, 15, 20, 50]" showFirstLastButtons></mat-paginator>
 
-
-<mat-paginator [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons></mat-paginator>

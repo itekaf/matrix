@@ -1,2 +1,55 @@
-<button mat-raised-button (click)="importData()">Import</button>
+<mat-card class="customer-settings">
+    <form class="example-container" [formGroup]="customerFormGroup" >
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td>
+                    <h3>{{ 'PAGES.CUSTOMER.SETTINGS' | translate }}</h3>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field appearance="fill" class="customer-settings_form-field">
+                        <mat-label>{{ 'PAGES.CUSTOMER.PRICE_COEFFICIENT' | translate }}</mat-label>
+                        <input matInput [formControl]="priceCoefficientControl">
+                        <mat-hint align="end">{{ 'PAGES.CUSTOMER.PRICE_COEFFICIENT_DESCRIPTION' | translate }}</mat-hint>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field appearance="fill"  class="customer-settings_form-field">
+                        <mat-label>{{ 'PAGES.CUSTOMER.PRICE_COEFFICIENT_2' | translate }}</mat-label>
+                        <input matInput [formControl]="priceCoefficient2Control">
+                        <mat-hint align="end">{{ 'PAGES.CUSTOMER.PRICE_COEFFICIENT_2_DESCRIPTION' | translate }}</mat-hint>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <button
+                    mat-raised-button
+                    color="primary"
+                    class="customer-settings_button"
+                    (click)="saveCustomerSettings()"
+                >
+                    {{ 'PAGES.CUSTOMER.SAVE' | translate }}
+                </button>
+            </tr>
+        </table>
+    </form>
+</mat-card>
+<mat-card class="customer-import-export">
+    <table class="example-full-width" cellspacing="0">
+        <tr>
+            <td>
+                <h3>{{ "PAGES.CUSTOMER.IMPORT_EXPORT" | translate }}</h3>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button mat-raised-button color="primary" class="customer-import-export_button" (click)="importData()">{{ 'PAGES.CUSTOMER.IMPORT_DATA_FROM_FILE' | translate }}</button>
+            </td>
+            <td>
+                <button mat-raised-button color="primary" class="customer-import-export_button" (click)="recalculateCustomer()">{{ 'PAGES.CUSTOMER.RECALCULATE' | translate }}</button>
+            </td>
+        </tr>
+    </table>
+</mat-card>
 <app-loading-data [isShow]="isLoading"></app-loading-data>

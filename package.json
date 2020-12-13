@@ -100,7 +100,7 @@
     "json2typescript": "1.4.1",
     "lowdb": "1.0.0",
     "ngx-toastr": "11.3.3",
-    "ngx-translate-lint": "1.9.6",
+    "ngx-translate-lint": "1.11.3",
     "xlsx": "0.16.9",
     "xlsx-populate": "1.21.0"
   }

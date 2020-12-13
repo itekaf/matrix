@@ -17,8 +17,8 @@ export class Item1CModel {
   @JsonProperty("Поставщик", String, true)
   public customer: string = undefined;
 
-  @JsonProperty("Штрихкод", String, true)
-  public barcode: string = undefined;
+  @JsonProperty("Штрихкод", Number, true)
+  public barcode: number = 0;
 
   @JsonProperty("Количество", Number, true)
   public count: number = 0;

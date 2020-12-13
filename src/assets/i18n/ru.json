@@ -8,7 +8,16 @@
         "LANGUAGES": "Языки",
         "CHOOSE_LANGUAGES_HERE": "Выберите язык",
         "IMPORT_DATA_FROM_SITE": "Импортировать данные из сайта Vse Polezno",
-        "EXPORT_DATA_TO_1C": "Экспорт данных для 1С"
+        "EXPORT_DATA_TO_1C": "Экспорт данных для 1С",
+        "LAST_ARTICLE": "Последний артикул",
+        "ARTICLE": "Артикул",
+        "SETTINGS": "Настройки",
+        "IMPORT_EXPORT": "Импорт & Экспорт",
+        "ARTICLE_NUMBER": "Номер артикула",
+        "ARTICLE_NUMBER_DESCRIPTION": "Последний номер артикула",
+        "ARTICLE_PREFIX": "Префикс артикула",
+        "ARTICLE_PREFIX_DESCRIPTION": "Префикс артикула",
+        "SAVE": "Сохранить"
     },
     "ITEMS": {
         "FILTER": "Поиск",
@@ -30,7 +39,21 @@
         "UNITS": "Ед.",
         "COUNTRY": "Страна",
         "CUSTOMER": "Поставщик",
-       "ARTICLE": "Article"
+        "ARTICLE": "Артикул",
+        "SAVE": "Сохранить",
+        "CANCEL": "Отменить"
+    },
+    "CUSTOMER": {
+        "IMPORT_DATA_FROM_FILE": "Импортировать данные из файла",
+        "SETTINGS": "Настройки",
+        "PRICE_COEFFICIENT": "Коэффициент цены",
+        "PRICE_COEFFICIENT_2": "Коэффициент цены 2",
+        "SAVE": "Сохранить",
+        "CANCEL": "Отменить",
+        "RECALCULATE": "Пересчитать товары",
+        "PRICE_COEFFICIENT_DESCRIPTION": "Коэфициент для Розничная цена 2 с НДС",
+        "PRICE_COEFFICIENT_2_DESCRIPTION": "Коэфициент для Розничная  фул-прайс с НДС",
+        "IMPORT_EXPORT": "Импорт экспорт"
     }
   },
   "MENU": {

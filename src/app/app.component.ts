@@ -4,8 +4,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { AppConfig } from '../environments/environment';
 import { ItemDBService } from 'app/core/services/lowdb/item.lowdb.service';
 import { CustomerDBService } from 'app/core/services/lowdb/customer.lowdb.service';
-import { LanguagesShortEnum } from 'app/core/enum/languagesShortEnum';
+import { LanguagesShortEnum } from 'app/core/enum/languagesShort.enum';
 import { IAppSettings, SettingsDBService } from 'app/core/services/lowdb/settings.lowdb.service';
+import { Toast, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ export class AppComponent implements OnInit {
     private dbCustomers: CustomerDBService,
     private translateService: TranslateService,
     private dbSettings: SettingsDBService,
+    private toastrService: ToastrService,
   ) {
 
     console.log('AppConfig', AppConfig);
@@ -40,9 +42,13 @@ export class AppComponent implements OnInit {
   }
 
   private initDatabase() {
-    this.dbItems.connect();
-    this.dbSettings.connect();
-    this.dbCustomers.connect();
+      try {
+          this.dbItems.connect();
+          this.dbSettings.connect();
+          this.dbCustomers.connect();
+      } catch (e) {
+          this.toastrService.error(e);
+      }
   }
 
   private initTranslate(): void {

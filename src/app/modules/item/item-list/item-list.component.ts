@@ -7,6 +7,13 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { MatSort } from '@angular/material/sort';
 
 const ELEMENT_DATA: ItemModel[] = [];
+const displayedColumns: string[] = [
+  'stock', 'categories', 'barcode', 'article',
+  'name', 'count', 'priceWithoutNDS', 'ndsCount',
+  'priceWithNDS', 'priceView', 'priceRetailWithNDS',
+  'priceView2', 'priceRetailWithNDSFull',
+  'priceView3', 'units', 'country'
+];
 
 @Component({
   selector: 'app-item-list',
@@ -22,31 +29,26 @@ const ELEMENT_DATA: ItemModel[] = [];
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemListComponent implements OnInit, AfterViewInit {
-  public displayedColumns: string[] = [
-    'stock', 'categories', 'barcode', 'article',
-    'name', 'count', 'priceWithoutNDS', 'ndsCount',
-    'priceWithNDS', 'priceView', 'priceRetailWithNDS',
-    'priceView2', 'priceRetailWithNDSFull',
-     'priceView3', 'units', 'country'
-  ];
-  public dataSource = new MatTableDataSource(ELEMENT_DATA);
-  public expandedElement: ItemModel | null;
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
+  public dataSource: MatTableDataSource<ItemModel> = new MatTableDataSource(ELEMENT_DATA);
+  public expandedElement: ItemModel | null;
+  public displayedColumns: string[] = displayedColumns;
+
   constructor(
     private itemDBService: ItemDBService,
     private cdf: ChangeDetectorRef
   ) { }
 
-  ngOnInit(): void {
-    this.dataSource.data = this.itemDBService.getMain();
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-  }
+    ngOnInit(): void {
+        this.dataSource.data = this.itemDBService.getMain();
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+    }
 
-  ngAfterViewInit() {
-
-  }
+    ngAfterViewInit() {
+    }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -54,7 +56,10 @@ export class ItemListComponent implements OnInit, AfterViewInit {
   }
 
   public updateItemAction($event: ItemModel) {
-    this.itemDBService.changeMainSingle($event);
+      // TODO: set all items
+    this.itemDBService.changeSingleByBarcodeFromWebsite($event);
     this.dataSource.data = this.itemDBService.getMain();
   }
+
+  public cancelItemAction() {}
 }

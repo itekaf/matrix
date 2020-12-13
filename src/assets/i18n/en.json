@@ -8,7 +8,16 @@
           "LANGUAGES": "Languages",
           "CHOOSE_LANGUAGES_HERE": "Choose languages here",
           "IMPORT_DATA_FROM_SITE": "Import Data From Site",
-          "EXPORT_DATA_TO_1C": "Export Data to 1C"
+          "EXPORT_DATA_TO_1C": "Export Data to 1C",
+          "LAST_ARTICLE": "Last article",
+          "ARTICLE": "Article",
+          "SETTINGS": "Settings",
+          "IMPORT_EXPORT": "Import & Export",
+          "ARTICLE_NUMBER": "Article Number",
+          "ARTICLE_NUMBER_DESCRIPTION": "Last article number",
+          "ARTICLE_PREFIX": "Article prefix",
+          "ARTICLE_PREFIX_DESCRIPTION": "Last article prefix",
+          "SAVE": "Save"
       },
       "ITEMS": {
           "FILTER": "Search",
@@ -30,7 +39,21 @@
           "UNITS": "Units",
           "COUNTRY": "Country",
           "CUSTOMER": "Customer",
-          "ARTICLE": "Article"
+          "ARTICLE": "Article",
+          "SAVE": "Save",
+          "CANCEL": "Cancel"
+      },
+      "CUSTOMER": {
+          "IMPORT_DATA_FROM_FILE": "Import data from file",
+          "SETTINGS": "Settings",
+          "PRICE_COEFFICIENT": "Price coefficient",
+          "PRICE_COEFFICIENT_2": "Price coefficient 2",
+          "SAVE": "Save",
+          "CANCEL": "Cancel",
+          "RECALCULATE": "Recalculate items",
+          "PRICE_COEFFICIENT_DESCRIPTION": "Price coefficient",
+          "PRICE_COEFFICIENT_2_DESCRIPTION": "Price coefficient 2",
+          "IMPORT_EXPORT": "Import & Export"
       }
   },
   "MENU": {

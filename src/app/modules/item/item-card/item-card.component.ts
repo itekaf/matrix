@@ -11,7 +11,8 @@ import { ItemDBService } from 'app/core/services/lowdb/item.lowdb.service';
 })
 export class ItemCardComponent implements OnInit {
   @Input() inputItem: ItemModel = new ItemModel();
-  @Output() public updateItem: EventEmitter<ItemModel> = new EventEmitter<ItemModel>();
+  @Output() public updateItemEmitter: EventEmitter<ItemModel> = new EventEmitter<ItemModel>();
+  @Output() public cancelItemEmitter: EventEmitter<void> = new EventEmitter<void>();
 
   public itemFormGroup: FormGroup;
   public stockControl: FormControl;
@@ -82,12 +83,10 @@ export class ItemCardComponent implements OnInit {
   }
 
   saveAction() {
-      console.log(this.itemFormGroup.value);
-      this.updateItem.emit(this.itemFormGroup.value);
-
+      this.updateItemEmitter.emit(this.itemFormGroup.value);
   }
 
   cancelAction() {
-
+      this.cancelItemEmitter.emit()
   }
 }

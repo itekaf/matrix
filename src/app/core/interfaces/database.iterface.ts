@@ -8,7 +8,7 @@ export interface IDatabaseConnect {
   init();
   connect();
   getMain()
-  setMain(item: IDatabaseModel, prop)
+  setMain(items: IDatabaseModel[], prop)
   removeMain(id: number)
   getSettings()
   setSettings(item: Object, prop)
@@ -18,6 +18,6 @@ export interface IDatabaseConnect {
 export interface ITableSettings {}
 
 export interface ITableDatabase {
-  main: IDatabaseModel[],
+  main: Object[],
   settings: ITableSettings
 }

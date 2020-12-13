@@ -5,6 +5,7 @@ import { ItemModel } from '../../models/item.model';
 import Item = Electron.Item;
 import { core } from '@angular/compiler';
 import { JsonProperty } from 'json2typescript';
+import { IAppSettings, SettingsDBService } from 'app/core/services/lowdb/settings.lowdb.service';
 
 const defaultObject: ITableDatabase = {
   main: [],
@@ -21,6 +22,7 @@ export class ItemDBService implements IDatabaseConnect {
 
   constructor(
     private lowdbService: LowdbService,
+    private settingDBService: SettingsDBService,
   ) {}
 
   init() {
@@ -39,28 +41,19 @@ export class ItemDBService implements IDatabaseConnect {
     return this.connect().get('settings').value();
   }
 
-  setMain(item: ItemModel) {
-    const currentItems: ItemModel[] = this.getMain();
-    const isExist: ItemModel = currentItems.find((x) => x.barcode === item.barcode);
-    console.log(isExist);
-    if (!!isExist) {
-      return this.changeMainSingle(item);
-    } else {
-      return this.connect().get('main').push(item).write();
-    }
+  setMain(items: ItemModel[]) {
+      return this.connect().set('main', items).write();
   }
 
-  changeMainSingle(item: ItemModel) {
-    const allOfMain: ItemModel[] = this.getMain();
-    const correctMain = allOfMain.reduce((accum: IDatabaseModel[], value: ItemModel) => {
-      if (value.barcode === item.barcode) {
-        accum.push(item);
-      } else  {
-        accum.push(value);
-      }
-      return accum;
-    }, []);
-    return this.connect().set('main', correctMain).write();
+  changeSingleByBarcodeFromForm(item: ItemModel) {
+    const items: ItemModel[] = this.getMain();
+    const itemIndex: number = items.findIndex((x) => x.barcode === item.barcode);
+    if (itemIndex === -1 ){
+      items.push(item);
+    } else {
+      items[itemIndex] = item;
+    }
+    return this.connect().set('main', items).write();
   }
 
   changeSingleByBarcodeFromWebsite(item: ItemModel) {
@@ -69,12 +62,20 @@ export class ItemDBService implements IDatabaseConnect {
     if (itemIndex === -1 ) {
       items.push(item);
     } else {
-      const correctItem: ItemModel = new ItemModel();
+        const correctItem: ItemModel = new ItemModel();
+        if (!!items[itemIndex].article) {
+            correctItem.article = items[itemIndex].article;
+        } else if (!!item.article){
+            correctItem.article = item.article.toString();
+        } else {
+            const appSettings: IAppSettings = this.settingDBService.getSettings();
+            const newArticle: string  = `${appSettings.articlePrefix}${appSettings.articleNumber}`;
+            correctItem.article = newArticle;
+        }
       correctItem.id = item.id;
       correctItem.name = items[itemIndex].name;
       correctItem.categories = item.categories;
       correctItem.sku = item.sku;
-      correctItem.article = items[itemIndex].article;
       correctItem.price = item.price;
       correctItem.weight = item.weight;
       correctItem.weightUnit = item.weightUnit;
@@ -91,7 +92,6 @@ export class ItemDBService implements IDatabaseConnect {
       correctItem.stock = item.stock;
       correctItem.priceWithoutNDS = items[itemIndex].priceWithoutNDS;
       correctItem.ndsCount = items[itemIndex].ndsCount;
-
       correctItem.priceWithNDS = item.priceWithNDS;
       correctItem.priceView = item.priceView;
       correctItem.priceRetailWithNDS = item.priceRetailWithNDS;
@@ -99,7 +99,7 @@ export class ItemDBService implements IDatabaseConnect {
       correctItem.priceRetailWithNDSFull = item.priceRetailWithNDSFull;
       correctItem.units = item.units;
       correctItem.country = items[itemIndex].country;
-      correctItem.brand = item[itemIndex].brand;
+      correctItem.brand = items[itemIndex].brand;
 
       items[itemIndex] = correctItem;
     }
@@ -111,40 +111,54 @@ export class ItemDBService implements IDatabaseConnect {
     const items: ItemModel[] = this.getMain();
     const itemIndex: number = items.findIndex((x) => x.barcode === item.barcode);
     if (itemIndex === -1 ) {
-      items.push(item);
+        const appSettings: IAppSettings = this.settingDBService.getSettings();
+        const newArticle: string  = `${appSettings.articlePrefix}${appSettings.articleNumber}`;
+        item.article = newArticle;
+        this.settingDBService.updateLastArticle();
+        items.push(item);
     } else {
-      const correctItem: ItemModel = new ItemModel();
-      correctItem.id = items[itemIndex].id;
-      correctItem.name = item.name;
-      correctItem.categories = items[itemIndex].categories;
-      correctItem.sku = items[itemIndex].sku;
-      correctItem.article = items[itemIndex].article;
-      correctItem.price = items[itemIndex].price;
-      correctItem.weight = items[itemIndex].weight;
-      correctItem.weightUnit = items[itemIndex].weightUnit;
-      correctItem.length = items[itemIndex].length;
-      correctItem.width = items[itemIndex].width;
-      correctItem.height = items[itemIndex].height;
-      correctItem.lengthUnit = items[itemIndex].lengthUnit;
-      correctItem.description = items[itemIndex].description;
-      correctItem.metaTitle = items[itemIndex].metaTitle;
-      correctItem.metaDescription = items[itemIndex].metaDescription;
-      correctItem.customer = item.customer;
-      correctItem.barcode = items[itemIndex].barcode;
-      correctItem.count = items[itemIndex].count;
-      correctItem.stock = items[itemIndex].stock;
-      correctItem.priceWithoutNDS = item.priceWithoutNDS;
-      correctItem.ndsCount = item.ndsCount;
-      correctItem.priceWithNDS = item.priceWithNDS;
-      correctItem.priceView = items[itemIndex].priceView;
-      correctItem.priceRetailWithNDS = items[itemIndex].priceRetailWithNDS;
-      correctItem.priceView2 = items[itemIndex].priceView2;
-      correctItem.priceRetailWithNDSFull = items[itemIndex].priceRetailWithNDSFull;
-      correctItem.units = items[itemIndex].units;
-      correctItem.country = item.country;
-      correctItem.brand = item.brand;
+        const correctItem: ItemModel = new ItemModel();
 
-      items[itemIndex] = correctItem;
+        let currentArticle: string = items[itemIndex].article;
+        if (!!currentArticle) {
+            correctItem.article = items[itemIndex].article;
+        } else {
+            const appSettings: IAppSettings = this.settingDBService.getSettings();
+            const newArticle: string  = `${appSettings.articlePrefix}${appSettings.articleNumber}`;
+            correctItem.article = newArticle;
+            this.settingDBService.updateLastArticle()
+        }
+
+        correctItem.id = items[itemIndex].id;
+        correctItem.name = item.name;
+        correctItem.categories = items[itemIndex].categories;
+        correctItem.sku = items[itemIndex].sku;
+        correctItem.price = items[itemIndex].price;
+        correctItem.weight = items[itemIndex].weight;
+        correctItem.weightUnit = items[itemIndex].weightUnit;
+        correctItem.length = items[itemIndex].length;
+        correctItem.width = items[itemIndex].width;
+        correctItem.height = items[itemIndex].height;
+        correctItem.lengthUnit = items[itemIndex].lengthUnit;
+        correctItem.description = items[itemIndex].description;
+        correctItem.metaTitle = items[itemIndex].metaTitle;
+        correctItem.metaDescription = items[itemIndex].metaDescription;
+        correctItem.customer = item.customer;
+        correctItem.barcode = items[itemIndex].barcode;
+        correctItem.count = items[itemIndex].count;
+        correctItem.stock = items[itemIndex].stock;
+        correctItem.priceWithoutNDS = item.priceWithoutNDS;
+        correctItem.ndsCount = item.ndsCount;
+        correctItem.priceWithNDS = item.priceWithNDS;
+        correctItem.priceView = items[itemIndex].priceView;
+        correctItem.priceRetailWithNDS = item.priceRetailWithNDS;
+        correctItem.priceView2 = items[itemIndex].priceView2;
+        correctItem.priceRetailWithNDSFull = item.priceRetailWithNDSFull;
+        correctItem.units = items[itemIndex].units;
+        correctItem.country = item.country;
+        correctItem.brand = item.brand;
+
+        items[itemIndex] = correctItem;
     }
 
     return this.connect().set('main', items).write();
